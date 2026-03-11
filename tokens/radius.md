@@ -1,15 +1,19 @@
-# Tokens de Border Radius
+---
+title: "Radius"
+---
 
-## Escala
+## Scale
 
 Base: `--radius: 0.625rem` (10px)
 
-| Token | Valor calculado | Classe Tailwind | Uso típico |
-|-------|----------------|-----------------|-----------|
-| `--radius-sm` | ~6px (0.625rem - 4px) | `rounded-sm` | Badges, tags pequenas |
-| `--radius-md` | ~8px (0.625rem - 2px) | `rounded-md` | Inputs, botões |
-| `--radius-lg` | 10px (0.625rem) | `rounded-lg` | Cards, popovers, dropdowns |
-| `--radius-xl` | ~14px (0.625rem + 4px) | `rounded-xl` | Modals, sheets, drawers |
+| Token         | Valor calculado        | Classe Tailwind | Uso típico                 |
+| ------------- | ---------------------- | --------------- | -------------------------- |
+| `--radius-sm` | ~6px (0.625rem - 4px)  | `rounded-sm`    | Badges, tags pequenas      |
+| `--radius-md` | ~8px (0.625rem - 2px)  | `rounded-md`    | Inputs, botões             |
+| `--radius-lg` | 10px (0.625rem)        | `rounded-lg`    | Cards, popovers, dropdowns |
+| `--radius-xl` | ~14px (0.625rem + 4px) | `rounded-xl`    | Modals, sheets, drawers    |
+
+---
 
 ## Regras
 

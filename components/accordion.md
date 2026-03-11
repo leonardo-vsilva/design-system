@@ -1,9 +1,11 @@
 # Accordion
 
-## O que é
+## O que é?
+
 Lista de seções expansíveis/colapsáveis. Cada item pode ser aberto individualmente para revelar conteúdo.
 
 ## Quando usar / quando NÃO usar
+
 - ✅ FAQs, seções de ajuda
 - ✅ Dados secundários que não precisam estar sempre visíveis
 - ✅ Formulários longos com seções agrupadas
@@ -11,6 +13,7 @@ Lista de seções expansíveis/colapsáveis. Cada item pode ser aberto individua
 - ❌ Navegação — use `Tabs` ou `Sidebar`
 
 ## Tipos
+
 - `single`: apenas 1 item aberto por vez
 - `multiple`: múltiplos itens podem estar abertos simultaneamente
 
@@ -28,6 +31,7 @@ Lista de seções expansíveis/colapsáveis. Cada item pode ser aberto individua
 ```
 
 ## Regras
+
 - ✅ Use `type: :single` como padrão.
 - ✅ Use `collapsible: true` para permitir fechar todos os itens.
 - ✅ Trigger deve ser claro e descritivo — o usuário decide se precisa expandir.

@@ -20,12 +20,10 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Design System",
-        "groups": [
-          {
-            "group": "Início",
-            "pages": ["index"]
-          },
+        "tab": "Guia de Design",
+        "icon": "paint-roller",
+        "pages": [
+          "index",
           {
             "group": "Tokens",
             "pages": [
@@ -91,7 +89,9 @@
           },
           {
             "group": "Padrões",
-            "pages": ["patterns/forms"]
+            "pages": [
+              "patterns/forms"
+            ]
           }
         ]
       }

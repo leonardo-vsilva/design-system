@@ -1,6 +1,7 @@
 ---
-title: "Linkana Design System"
+title: "Início"
 description: "Componentes, tokens e padrões para produtos Linkana. Baseado em shadcn/ui com ruby_ui (Rails)."
+mode: "default"
 ---
 
 ## Stack
@@ -10,16 +11,16 @@ Ruby on Rails · Tailwind CSS v4 · ruby_ui · tw-animate-css
 ## Princípios
 
 <CardGroup cols={2}>
-  <Card title="Consistência acima de criatividade" icon="layer-group">
+  <Card icon="layer-group" title="Consistência acima de criatividade">
     Prefira componentes existentes a soluções ad-hoc. Se existe um componente para o caso, use-o.
   </Card>
-  <Card title="Sem customizações de cor" icon="palette">
+  <Card icon="palette" title="Sem customizações de cor">
     Nunca adicione cores fora dos tokens definidos. O tema é neutro/acromático — preto, branco e escala de cinzas.
   </Card>
-  <Card title="Dark mode sempre" icon="moon">
+  <Card icon="moon" title="Dark mode sempre">
     Todos os componentes devem funcionar nos dois temas. O dark mode é ativado pela classe `.dark` no elemento pai.
   </Card>
-  <Card title="Semântica primeiro" icon="code">
+  <Card icon="code" title="Semântica primeiro">
     Use o componente correto para o contexto correto. Não use `Button` para navegação — use `Link`.
   </Card>
 </CardGroup>
@@ -27,13 +28,13 @@ Ruby on Rails · Tailwind CSS v4 · ruby_ui · tw-animate-css
 ## Onde começar
 
 <CardGroup cols={3}>
-  <Card title="Tokens" icon="sliders" href="/tokens/colors">
+  <Card icon="sliders" href="/tokens/colors" title="Tokens">
     Cores, tipografia, espaçamento e border-radius.
   </Card>
-  <Card title="Componentes" icon="puzzle-piece" href="/components/button">
+  <Card icon="puzzle-piece" href="/components/button" title="Componentes">
     49 componentes documentados com regras de uso e exemplos.
   </Card>
-  <Card title="Padrões" icon="rectangle-list" href="/patterns/forms">
+  <Card icon="rectangle-list" href="/patterns/forms" title="Padrões">
     Estruturas recorrentes como formulários.
   </Card>
 </CardGroup>
@@ -42,9 +43,9 @@ Ruby on Rails · Tailwind CSS v4 · ruby_ui · tw-animate-css
 
 O tema da Linkana é acromático. Cores com matiz aparecem **apenas** em contextos funcionais:
 
-| Cor | Token | Uso |
-|-----|-------|-----|
-| Vermelho | `destructive` | Erros, ações irreversíveis |
-| Âmbar | `warning` | Alertas de atenção |
-| Verde | `success` | Confirmações, sucesso |
-| Variado | `chart-1` a `chart-5` | Visualizações de dados |
+| Cor      | Token                 | Uso                        |
+| -------- | --------------------- | -------------------------- |
+| Vermelho | `destructive`         | Erros, ações irreversíveis |
+| Âmbar    | `warning`             | Alertas de atenção         |
+| Verde    | `success`             | Confirmações, sucesso      |
+| Variado  | `chart-1` a `chart-5` | Visualizações de dados     |
