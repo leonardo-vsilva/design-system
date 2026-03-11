@@ -1,55 +1,52 @@
-# Mintlify Starter Kit
+# Linkana Design System
 
-Use the starter kit to get your docs deployed and ready to customize.
+## Visão geral
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+Design system da Linkana baseado em shadcn/ui com ruby_ui (implementação Rails).
+Stack: Ruby on Rails + Tailwind CSS v4 + ruby_ui + tw-animate-css.
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+## Princípios
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+- **Consistência acima de criatividade.** Prefira componentes existentes a soluções ad-hoc.
+- **Sem customizações de cor.** Nunca adicione cores fora dos tokens definidos.
+- **dark mode sempre.** Todos os componentes devem funcionar nos dois temas.
+- **Semântica primeiro.** Use o componente correto para o contexto correto — não use Button para navegação, use Link.
 
-## AI-assisted writing
+## Tema
 
-Set up your AI coding tool to work with Mintlify:
+O tema da Linkana é neutro/acromático. A paleta primária é preto/branco com escala de cinzas.
+Cores com matiz aparecem apenas em: destructive (vermelho), warning (âmbar), success (verde) e charts.
 
-```bash
-npx skills add https://mintlify.com/docs
-```
+Suporte a dark mode via classe `.dark` no elemento pai.
 
-This command installs Mintlify's documentation skill for your configured AI tools like Claude Code, Cursor, Windsurf, and others. The skill includes component reference, writing standards, and workflow guidance.
-
-See the [AI tools guides](/ai-tools) for tool-specific setup.
-
-## Development
-
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
+## Estrutura desta documentação
 
 ```
-npm i -g mint
+tokens/
+  colors.md       — tokens de cor (CSS custom properties)
+  typography.md   — fonte, tamanhos, pesos
+  radius.md       — escala de border-radius
+  spacing.md      — espaçamento e container
+
+components/
+  [nome].md       — documentação de cada componente shadcn/ruby_ui
+
+patterns/
+  forms.md        — padrões de composição de formulários
 ```
 
-Run the following command at the root of your documentation, where your `docs.json` is located:
+## Como consultar
 
-```
-mint dev
-```
+- Para tokens de cor: veja `tokens/colors.md`
+- Para usar um componente: veja `components/[nome].md`
+- Para montar formulários: veja `patterns/forms.md`
 
-View your local preview at `http://localhost:3000`.
+## Decisores
 
-## Publishing changes
+Leo, Cidão. PRs de mudança estrutural no design system passam por eles.
 
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
+## Biblioteca de referência
 
-## Need help?
-
-### Troubleshooting
-
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
-
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+- shadcn/ui: https://ui.shadcn.com/docs/components
+- ruby_ui: https://ruby-ui.com
+- Tailwind CSS v4: https://tailwindcss.com/docs
