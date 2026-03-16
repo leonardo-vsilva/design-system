@@ -213,97 +213,207 @@ Nunca use `size="icon"` em CTAs primários. O usuário precisa entender a ação
 
 ## Exemplos
 
-✅ Correto — cancelar + confirmar (outline → default):
+### Grupos de decisão
+
+✅ Cancelar + confirmar (outline → default)
+
+<div style={{padding: '24px', background: '#fafafa', border: '1px solid #e5e5e5', borderRadius: '8px', display: 'flex', gap: '8px', alignItems: 'center'}}>
+  <button style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', height: '36px', padding: '0 16px', background: 'transparent', color: '#1a1a1a', border: '1px solid #e5e5e5', borderRadius: '6px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>Cancelar</button>
+  <button style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', height: '36px', padding: '0 16px', background: '#1a1a1a', color: '#fafafa', border: 'none', borderRadius: '6px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>Salvar</button>
+</div>
+
 ```erb
 <%= render RubyUI::Button.new(variant: :outline) { "Cancelar" } %>
 <%= render RubyUI::Button.new(variant: :default) { "Salvar" } %>
 ```
 
-✅ Correto — três níveis em formulário (outline → secondary → default):
+✅ Três níveis em formulário (outline → secondary → default)
+
+<div style={{padding: '24px', background: '#fafafa', border: '1px solid #e5e5e5', borderRadius: '8px', display: 'flex', gap: '8px', alignItems: 'center'}}>
+  <button style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', height: '36px', padding: '0 16px', background: 'transparent', color: '#1a1a1a', border: '1px solid #e5e5e5', borderRadius: '6px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>Cancelar</button>
+  <button style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', height: '36px', padding: '0 16px', background: '#f5f5f5', color: '#1a1a1a', border: 'none', borderRadius: '6px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>Salvar rascunho</button>
+  <button style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', height: '36px', padding: '0 16px', background: '#1a1a1a', color: '#fafafa', border: 'none', borderRadius: '6px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>Publicar</button>
+</div>
+
 ```erb
 <%= render RubyUI::Button.new(variant: :outline) { "Cancelar" } %>
 <%= render RubyUI::Button.new(variant: :secondary) { "Salvar rascunho" } %>
 <%= render RubyUI::Button.new(variant: :default) { "Publicar" } %>
 ```
 
-✅ Correto — ação destrutiva com confirmação:
+✅ Ação destrutiva com confirmação (outline → destructive)
+
+<div style={{padding: '24px', background: '#fafafa', border: '1px solid #e5e5e5', borderRadius: '8px', display: 'flex', gap: '8px', alignItems: 'center'}}>
+  <button style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', height: '36px', padding: '0 16px', background: 'transparent', color: '#1a1a1a', border: '1px solid #e5e5e5', borderRadius: '6px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>Cancelar</button>
+  <button style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', height: '36px', padding: '0 16px', background: '#dc2626', color: '#fff', border: 'none', borderRadius: '6px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>Excluir fornecedor</button>
+</div>
+
 ```erb
 <%= render RubyUI::Button.new(variant: :outline) { "Cancelar" } %>
 <%= render RubyUI::Button.new(variant: :destructive) { "Excluir fornecedor" } %>
 ```
 
-✅ Correto — toolbar com outline + CTA primário:
-```erb
-<%# Lado esquerdo: ações secundárias visíveis %>
-<%= render RubyUI::Button.new(variant: :outline, size: :sm) { "Filtros avançados" } %>
-<%= render RubyUI::Button.new(variant: :outline, size: :sm) { "Exportar" } %>
+❌ Dois primários concorrendo — nenhum é o principal
 
-<%# Lado direito: ação principal %>
-<%= render RubyUI::Button.new(variant: :default) { "Novo fornecedor" } %>
+<div style={{padding: '24px', background: '#fafafa', border: '1px solid #e5e5e5', borderRadius: '8px', display: 'flex', gap: '8px', alignItems: 'center'}}>
+  <button style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', height: '36px', padding: '0 16px', background: '#1a1a1a', color: '#fafafa', border: 'none', borderRadius: '6px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>Salvar</button>
+  <button style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', height: '36px', padding: '0 16px', background: '#1a1a1a', color: '#fafafa', border: 'none', borderRadius: '6px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>Publicar</button>
+</div>
+
+```erb
+<%# ❌ Dois default concorrem — o usuário não sabe qual é a ação principal %>
+<%= render RubyUI::Button.new(variant: :default) { "Salvar" } %>
+<%= render RubyUI::Button.new(variant: :default) { "Publicar" } %>
 ```
 
-✅ Correto — editar inline em tabela (outline):
+❌ Ordem invertida — default à esquerda
+
+<div style={{padding: '24px', background: '#fafafa', border: '1px solid #e5e5e5', borderRadius: '8px', display: 'flex', gap: '8px', alignItems: 'center'}}>
+  <button style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', height: '36px', padding: '0 16px', background: '#1a1a1a', color: '#fafafa', border: 'none', borderRadius: '6px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>Confirmar</button>
+  <button style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', height: '36px', padding: '0 16px', background: 'transparent', color: '#1a1a1a', border: '1px solid #e5e5e5', borderRadius: '6px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>Cancelar</button>
+</div>
+
 ```erb
-<%= render RubyUI::Button.new(variant: :outline, size: :sm) { "Editar" } %>
+<%# ❌ Default à esquerda inverte a hierarquia esperada %>
+<%= render RubyUI::Button.new(variant: :default) { "Confirmar" } %>
+<%= render RubyUI::Button.new(variant: :outline) { "Cancelar" } %>
 ```
 
-✅ Correto — ação mínima no hover (ghost):
+### Toolbar
+
+✅ Ações secundárias (outline) + CTA primário
+
+<div style={{padding: '24px', background: '#fafafa', border: '1px solid #e5e5e5', borderRadius: '8px', display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'space-between'}}>
+  <div style={{display: 'flex', gap: '8px'}}>
+    <button style={{display: 'inline-flex', alignItems: 'center', gap: '6px', justifyContent: 'center', height: '32px', padding: '0 12px', background: 'transparent', color: '#1a1a1a', border: '1px solid #e5e5e5', borderRadius: '6px', fontSize: '12px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>⧉ Filtros avançados</button>
+    <button style={{display: 'inline-flex', alignItems: 'center', gap: '6px', justifyContent: 'center', height: '32px', padding: '0 12px', background: 'transparent', color: '#1a1a1a', border: '1px solid #e5e5e5', borderRadius: '6px', fontSize: '12px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>↓ Exportar</button>
+  </div>
+  <button style={{display: 'inline-flex', alignItems: 'center', gap: '6px', justifyContent: 'center', height: '36px', padding: '0 16px', background: '#1a1a1a', color: '#fafafa', border: 'none', borderRadius: '6px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>+ Novo fornecedor</button>
+</div>
+
 ```erb
-<%# Aparece apenas no hover da linha %>
-<%= render RubyUI::Button.new(variant: :ghost, size: :icon) do %>
+<%= render RubyUI::Button.new(variant: :outline, size: :sm) do %>
+  <%= render RubyUI::Icon.new(name: "sliders-horizontal") %> Filtros avançados
+<% end %>
+<%= render RubyUI::Button.new(variant: :outline, size: :sm) do %>
+  <%= render RubyUI::Icon.new(name: "download") %> Exportar
+<% end %>
+<%= render RubyUI::Button.new(variant: :default) do %>
+  <%= render RubyUI::Icon.new(name: "plus") %> Novo fornecedor
+<% end %>
+```
+
+❌ Ghost em toolbar — ação não é descoberta sem hover
+
+<div style={{padding: '24px', background: '#fafafa', border: '1px solid #e5e5e5', borderRadius: '8px', display: 'flex', gap: '8px', alignItems: 'center'}}>
+  <button style={{display: 'inline-flex', alignItems: 'center', gap: '6px', justifyContent: 'center', height: '32px', padding: '0 12px', background: 'transparent', color: '#737373', border: 'none', borderRadius: '6px', fontSize: '12px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>⧉ Filtros avançados</button>
+  <button style={{display: 'inline-flex', alignItems: 'center', gap: '6px', justifyContent: 'center', height: '32px', padding: '0 12px', background: 'transparent', color: '#737373', border: 'none', borderRadius: '6px', fontSize: '12px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>↓ Exportar</button>
+</div>
+
+```erb
+<%# ❌ Ghost some no fundo — use outline para ações que precisam ser vistas %>
+<%= render RubyUI::Button.new(variant: :ghost, size: :sm) { "Filtros avançados" } %>
+<%= render RubyUI::Button.new(variant: :ghost, size: :sm) { "Exportar" } %>
+```
+
+### Ações inline em tabela
+
+✅ Outline em linha de registro
+
+<div style={{padding: '24px', background: '#fafafa', border: '1px solid #e5e5e5', borderRadius: '8px'}}>
+  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 12px', background: '#fff', border: '1px solid #e5e5e5', borderRadius: '6px'}}>
+    <span style={{fontSize: '14px', color: '#1a1a1a', fontFamily: 'inherit'}}>Fornecedor Exemplo Ltda</span>
+    <div style={{display: 'flex', gap: '6px'}}>
+      <button style={{display: 'inline-flex', alignItems: 'center', gap: '4px', justifyContent: 'center', height: '28px', padding: '0 10px', background: 'transparent', color: '#1a1a1a', border: '1px solid #e5e5e5', borderRadius: '6px', fontSize: '12px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>✏️ Editar</button>
+      <button style={{display: 'inline-flex', alignItems: 'center', gap: '4px', justifyContent: 'center', height: '28px', padding: '0 10px', background: 'transparent', color: '#1a1a1a', border: '1px solid #e5e5e5', borderRadius: '6px', fontSize: '12px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>⧉ Duplicar</button>
+    </div>
+  </div>
+</div>
+
+```erb
+<%= render RubyUI::Button.new(variant: :outline, size: :sm) do %>
+  <%= render RubyUI::Icon.new(name: "pencil") %> Editar
+<% end %>
+<%= render RubyUI::Button.new(variant: :outline, size: :sm) do %>
+  <%= render RubyUI::Icon.new(name: "copy") %> Duplicar
+<% end %>
+```
+
+✅ Ghost no hover — ícone discreto que aparece ao passar o mouse
+
+<div style={{padding: '24px', background: '#fafafa', border: '1px solid #e5e5e5', borderRadius: '8px'}}>
+  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 12px', background: '#fff', border: '1px solid #e5e5e5', borderRadius: '6px'}}>
+    <span style={{fontSize: '14px', color: '#1a1a1a', fontFamily: 'inherit'}}>Nome do campo</span>
+    <button style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', height: '28px', width: '28px', background: 'transparent', color: '#737373', border: 'none', borderRadius: '6px', fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit'}}>✏️</button>
+  </div>
+</div>
+
+```erb
+<%# Visível apenas no hover da linha %>
+<%= render RubyUI::Button.new(variant: :ghost, size: :icon, aria: { label: "Editar campo" }) do %>
   <%= render RubyUI::Icon.new(name: "pencil") %>
 <% end %>
 ```
 
-❌ Errado — ghost para ação que precisa ser descoberta sem hover:
-```erb
-<%# Usuário não vai encontrar — use outline %>
-<%= render RubyUI::Button.new(variant: :ghost, size: :sm) { "Filtros avançados" } %>
-```
+### Ícones
 
-✅ Correto — ícone + texto em toolbar (metáfora clara):
+✅ Ícone + texto quando há metáfora clara (outline em toolbar)
+
+<div style={{padding: '24px', background: '#fafafa', border: '1px solid #e5e5e5', borderRadius: '8px', display: 'flex', gap: '8px', flexWrap: 'wrap'}}>
+  <button style={{display: 'inline-flex', alignItems: 'center', gap: '6px', justifyContent: 'center', height: '32px', padding: '0 12px', background: 'transparent', color: '#1a1a1a', border: '1px solid #e5e5e5', borderRadius: '6px', fontSize: '12px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>⧉ Filtros avançados</button>
+  <button style={{display: 'inline-flex', alignItems: 'center', gap: '6px', justifyContent: 'center', height: '32px', padding: '0 12px', background: 'transparent', color: '#1a1a1a', border: '1px solid #e5e5e5', borderRadius: '6px', fontSize: '12px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>↓ Exportar</button>
+  <button style={{display: 'inline-flex', alignItems: 'center', gap: '6px', justifyContent: 'center', height: '32px', padding: '0 12px', background: '#dc2626', color: '#fff', border: 'none', borderRadius: '6px', fontSize: '12px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>🗑 Excluir selecionados</button>
+</div>
+
 ```erb
 <%= render RubyUI::Button.new(variant: :outline, size: :sm) do %>
-  <%= render RubyUI::Icon.new(name: "sliders-horizontal") %>
-  Filtros avançados
+  <%= render RubyUI::Icon.new(name: "sliders-horizontal") %> Filtros avançados
 <% end %>
 <%= render RubyUI::Button.new(variant: :outline, size: :sm) do %>
-  <%= render RubyUI::Icon.new(name: "download") %>
-  Exportar
+  <%= render RubyUI::Icon.new(name: "download") %> Exportar
 <% end %>
 ```
 
-✅ Correto — somente texto para ações sem metáfora visual:
+✅ Somente texto para ações sem metáfora visual
+
+<div style={{padding: '24px', background: '#fafafa', border: '1px solid #e5e5e5', borderRadius: '8px', display: 'flex', gap: '8px'}}>
+  <button style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', height: '36px', padding: '0 16px', background: 'transparent', color: '#1a1a1a', border: '1px solid #e5e5e5', borderRadius: '6px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>Cancelar</button>
+  <button style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', height: '36px', padding: '0 16px', background: '#1a1a1a', color: '#fafafa', border: 'none', borderRadius: '6px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>Salvar rascunho</button>
+</div>
+
 ```erb
 <%= render RubyUI::Button.new(variant: :outline) { "Cancelar" } %>
 <%= render RubyUI::Button.new(variant: :default) { "Salvar rascunho" } %>
 ```
 
-❌ Errado — ícone decorativo sem metáfora clara:
+❌ Ícone decorativo sem metáfora — não reduz tempo de leitura
+
+<div style={{padding: '24px', background: '#fafafa', border: '1px solid #e5e5e5', borderRadius: '8px', display: 'flex', gap: '8px'}}>
+  <button style={{display: 'inline-flex', alignItems: 'center', gap: '6px', justifyContent: 'center', height: '36px', padding: '0 16px', background: 'transparent', color: '#1a1a1a', border: '1px solid #e5e5e5', borderRadius: '6px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>✕ Cancelar</button>
+  <button style={{display: 'inline-flex', alignItems: 'center', gap: '6px', justifyContent: 'center', height: '36px', padding: '0 16px', background: '#1a1a1a', color: '#fafafa', border: 'none', borderRadius: '6px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>✓ Confirmar</button>
+</div>
+
 ```erb
-<%# "check" em "Confirmar" não reduz compreensão — só adiciona ruído %>
+<%# ❌ ✕ e ✓ não reduzem compreensão em ações textuais — só criam ruído %>
+<%= render RubyUI::Button.new(variant: :outline) do %>
+  <%= render RubyUI::Icon.new(name: "x") %> Cancelar
+<% end %>
 <%= render RubyUI::Button.new(variant: :default) do %>
-  <%= render RubyUI::Icon.new(name: "check") %>
-  Confirmar
+  <%= render RubyUI::Icon.new(name: "check") %> Confirmar
 <% end %>
 ```
 
-❌ Errado — mistura de botões com e sem ícone no mesmo grupo:
+❌ Mistura de botões com e sem ícone no mesmo grupo
+
+<div style={{padding: '24px', background: '#fafafa', border: '1px solid #e5e5e5', borderRadius: '8px', display: 'flex', gap: '8px'}}>
+  <button style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', height: '36px', padding: '0 16px', background: 'transparent', color: '#1a1a1a', border: '1px solid #e5e5e5', borderRadius: '6px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>Cancelar</button>
+  <button style={{display: 'inline-flex', alignItems: 'center', gap: '6px', justifyContent: 'center', height: '36px', padding: '0 16px', background: '#1a1a1a', color: '#fafafa', border: 'none', borderRadius: '6px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit'}}>💾 Salvar</button>
+</div>
+
 ```erb
+<%# ❌ Um com ícone, outro sem — grupo visualmente inconsistente %>
 <%= render RubyUI::Button.new(variant: :outline) { "Cancelar" } %>
 <%= render RubyUI::Button.new(variant: :default) do %>
-  <%= render RubyUI::Icon.new(name: "save") %>
-  Salvar
+  <%= render RubyUI::Icon.new(name: "save") %> Salvar
 <% end %>
-```
-
-❌ Errado — dois botões primários concorrendo:
-```erb
-<%= render RubyUI::Button.new(variant: :default) { "Salvar" } %>
-<%= render RubyUI::Button.new(variant: :default) { "Publicar" } %>
-```
-
-❌ Errado — usar Button para navegação:
-```erb
-<%= render RubyUI::Button.new(href: "/suppliers") { "Ver fornecedores" } %>
 ```
