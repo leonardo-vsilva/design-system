@@ -91,13 +91,24 @@ Se o projeto já existir → pergunte ao usuário se deseja reutilizá-lo ou cri
 
 ---
 
-## Passo 5 — Gerar as telas
+## Passo 5 — Carregar o DESIGN.md
+
+Antes de gerar qualquer tela, leia o arquivo `DESIGN.md` da raiz do repositório
+usando a ferramenta `Read` com o caminho absoluto do projeto.
+
+Este arquivo é a fonte única de verdade do design system Linkana no formato
+otimizado para geração de UI. Ele deve ser lido a cada execução — nunca use
+uma versão em cache ou inline.
+
+---
+
+## Passo 6 — Gerar as telas
 
 Para **cada tela** identificada, chame `generate_screen_from_text` com o seguinte prompt:
 
 ```
 [DESIGN SYSTEM CONTEXT]
-{{LINKANA_DESIGN_MD}}
+{conteúdo completo do DESIGN.md lido no Passo 5}
 
 [SCREEN SPEC]
 Nome: {nome da tela}
@@ -127,7 +138,7 @@ A tela deve ser funcional, densa em informação e profissional — não decorat
 
 ---
 
-## Passo 6 — Capturar e apresentar resultado
+## Passo 7 — Capturar e apresentar resultado
 
 Para cada tela gerada com sucesso, use `fetch_screen_image` para obter o screenshot.
 
@@ -160,165 +171,6 @@ Ao final, ofereça:
 - Iterar em telas específicas com mais detalhamento
 - Rodar `/design-check` nas telas geradas
 - Rodar `/linear-check` para verificar cobertura dos critérios de aceite
-
----
-
-## DESIGN.md — Linkana Design System
-
-```markdown
-# Linkana Design System
-
-## 1. Visual Theme & Atmosphere
-
-Clean, achromatic B2B SaaS product for procurement and supplier management.
-Monochromatic and professional — color is used exclusively for semantic meaning
-(status, feedback, data), never for decoration. High information density with
-structured whitespace. Every visual decision is functional. Dark mode supported.
-
----
-
-## 2. Color Palette & Roles
-
-**Pure Black (#171717)** — Primary CTA buttons, filled actions, strong headings
-**Off-White (#FAFAFA)** — Page backgrounds, canvas surfaces
-**Neutral-100 (#F5F5F5)** — Secondary backgrounds, table header rows, hover states
-**Neutral-200 (#E5E5E5)** — Card borders, input borders, dividers, separators
-**Neutral-500 (#737373)** — Muted text, secondary labels, placeholders, helper text
-**Neutral-800 (#262626)** — Body text, default foreground, table cells
-**Pure White (#FFFFFF)** — Card surfaces, modal/popover backgrounds, input fills
-**Destructive Red (#DC2626)** — Error messages, destructive action buttons, error borders
-**Warning Amber (#D97706)** — Warning banners, caution status indicators
-**Success Green (#16A34A)** — Approved status, success confirmations, correct answers
-**Chart colors** — For data visualization only: Orange (#F97316), Teal (#0D9488),
-  Dark Blue (#1E3A5F), Yellow (#EAB308), Yellow-Orange (#F59E0B)
-
----
-
-## 3. Typography Rules
-
-Font family: System UI stack — Inter, -apple-system, BlinkMacSystemFont, sans-serif.
-No custom web fonts. No decorative typefaces.
-
-Size scale (use only these):
-- 12px — Auxiliary labels, badge text, metadata, timestamps
-- 14px — Standard UI body, form labels, table cells, button text
-- 16px — Running text, field descriptions, section body
-- 18px — Minor section headings
-- 20px — Card titles, panel headings
-- 24px — Page titles
-- 30px — Maximum heading size (used sparingly)
-
-Weight usage:
-- 400 Regular — Body copy, table data cells, description text
-- 500 Medium — Labels, navigation items, button text, column headers
-- 600 Semibold — Card titles, form section headings, sidebar group labels
-- 700 Bold — Page-level headings, primary titles
-
-No ExtraBold (800) or Black (900). No italic for UI (only for inline code or
-quoted content). Letter spacing: default. Line height: 1.25 for headings, 1.5 for body.
-
----
-
-## 4. Component Stylings
-
-**Buttons:**
-- Primary (Default): Filled Pure Black (#171717), white text, 8px corner radius,
-  36px height, 14px medium weight text, 16px horizontal padding. Maximum ONE per page.
-- Secondary: White background, 1px Neutral-200 border, black text, same radius/size.
-- Ghost: No background, no border, black text. Appears on hover in tables/cards.
-- Destructive filled: Filled Destructive Red (#DC2626), white text — only when it's
-  the sole high-emphasis action on a page.
-- Destructive outline: 1px red border, red text, transparent background — used when
-  a destructive action sits alongside a Default (primary) button on the same row.
-- Icon button: 32×32px square, ghost style, for edit/delete/more actions in tables.
-- Maximum 2 buttons per action row. 3+ actions: use DropdownMenu with ••• trigger
-  (Ellipsis icon) for secondary actions. Add Tooltip "Mais ações" to the trigger.
-
-**Cards / Containers:**
-- White (#FFFFFF) background, 1px solid Neutral-200 (#E5E5E5) border, 10px corner radius.
-- Inner padding: 24px (all sides).
-- No box shadow (completely flat). Separation achieved through border + background contrast.
-- Card heading: 16px semibold text + optional inline actions (icon buttons) right-aligned.
-
-**Inputs / Form Fields:**
-- White fill, 1px Neutral-200 border, 8px corner radius, 36px height.
-- Focus state: 2px offset ring in Primary color.
-- Error state: 1px Destructive Red border + "Formato incorreto" or specific message
-  in 14px Destructive Red text directly below the field.
-- Field anatomy (top to bottom): Label (14px semibold) → Input → Helper text (14px muted) → Error text (14px red).
-- Gap between fields: 16px. Gap between form sections: 32px.
-- Required fields: asterisk (*) appended to label text.
-- Select: dropdown chevron right-aligned, same height as input.
-- Combobox: includes search input inside the dropdown, for long lists (countries, currencies, users).
-  Use combobox when the list exceeds ~10 items or requires search.
-- Textarea: same styling as input, minimum 3 rows height.
-
-**Modals / Dialogs:**
-- White background, 14px corner radius, dark semi-transparent backdrop overlay.
-- Max 6 fields per modal. Max 2 columns per modal form.
-- Footer: right-aligned action buttons, separated by 1px top border + 16px padding-top.
-- Close button (X): top-right corner, 32px ghost icon button.
-
-**Badges / Tags / Status indicators:**
-- Status badge (e.g., Aprovado, Reprovado, Pendente): 6px corner radius (subtly rounded),
-  12px text, 20px height, 8px horizontal padding. Color from semantic palette.
-- Category/label tag: pill shape (fully rounded), same height.
-- Optional badge: gray background (#F5F5F5), "Opcional" text in 12px muted.
-
-**Tables / Lists:**
-- Full-width layout. No border-radius on cells.
-- Header row: 14px medium text, Neutral-100 background, 1px bottom border.
-- Data rows: 14px regular text, 44px minimum row height, subtle hover state.
-- Actions column: always right-aligned, ghost icon buttons (32px), revealed on hover.
-- Empty state: centered within table area — icon + title (16px semibold) + description (14px muted) + optional CTA button.
-
-**Navigation Sidebar:**
-- 256px wide, fixed left. White background with 1px right border.
-- Group labels: 12px uppercase muted text.
-- Nav items: 14px medium, 36px height, 8px corner radius on hover/active.
-- Active state: Neutral-100 background, black text.
-- Nested items: 8px left indent, 12px text size.
-
-**Page Header (content area):**
-- 48px height, includes breadcrumbs (left) and page-level action buttons (right).
-- Breadcrumbs: 14px muted → foreground color chain with "›" separators.
-
-**Alerts / Banners:**
-- Full-width within content area, 8px corner radius.
-- Info: Neutral-100 background with Neutral-500 icon.
-- Warning: Amber-50 background with Amber-600 icon.
-- Error: Red-50 background with Red-600 icon.
-- Success: Green-50 background with Green-600 icon.
-
----
-
-## 5. Layout Principles
-
-8-point spacing grid — ALL spacing values must be multiples of 8px.
-Primary scale: 8, 16, 24, 32, 40, 48, 64px. Secondary (4px) only for tight inline spacing.
-
-Page shell:
-- Left sidebar: 256px fixed
-- Top header: 64px (app-level, with logo + user menu)
-- Content area starts at 256px left + 64px top
-- Content padding: 24px horizontal, 24px top, 40px bottom (p-6 pb-10)
-
-Container widths by context:
-- Form pages (CRUD, edit, create): max-width 768px, horizontally centered within content area
-- Preview / documentation pages: max-width 1152px, horizontally centered
-- Tables / dashboards / lists: full width of content area (no max-width)
-
-Section structure within a page:
-- Section header: title (20px semibold) + optional description (14px muted) + optional action button, full-width
-- Sections separated by 32px gap or 1px horizontal rule
-- Form groups separated by 32px, individual fields by 16px
-
-Whitespace character: generous but structured. Never cramped. Breathing room between sections (32px), tight within field groups (16px).
-
-Grid alignment: all elements snap to 8px. No 13px, 17px, 22px gaps.
-
-Responsive: design for 1366×900px viewport (standard laptop). Tables support horizontal scroll on smaller viewports.
-```
 
 ---
 
